@@ -1,0 +1,128 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Blackbox.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:local="clr-namespace:Blackbox"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False" xmlns:my="clr-namespace:Blackbox">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28" Background="#FFFFFFFF">
+            <StackPanel Background="#FFFFFFFF" Orientation="Horizontal">
+                <Image Margin="10,0,0,0" Source="/Icons/PageTitle/Title.png" Stretch="Uniform"></Image>
+                <TextBlock x:Name="ApplicationTitle" Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextSmallStyle}" Foreground="#99000000"/>
+            </StackPanel>
+            <TextBlock x:Name="PageTitle" Text="{Binding Path=LocalizedResources.SettingsPageTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="Black"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <ScrollViewer Margin="0,0,0,12" Grid.Row="1" Background="White" BorderBrush="White">
+            <StackPanel Grid.Row="1" Margin="12,0,12,0">
+
+                <StackPanel.Resources>
+                    <local:GuessTypeToIntegerConverter x:Key="GuessTypeToIntegerConverter" />
+                </StackPanel.Resources>
+
+                <toolkit:ListPicker 
+                    Name="guessTypeListPicker" 
+                    Width="432" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top"
+                    Header="{Binding Path=LocalizedResources.GuessTypeTitle, 
+                    Source={StaticResource LocalizedStrings}}" 
+                    ItemsSource="{Binding GuessTypeList}"
+                    SelectedIndex="{Binding GuessType, Mode=TwoWay, 
+                    Converter={StaticResource GuessTypeToIntegerConverter}}" 
+                    BorderBrush="#9A000000" 
+                    Background="#BFFFFFFF">
+                    <toolkit:ListPicker.HeaderTemplate>
+                        <DataTemplate>
+                            <ContentControl Foreground="Black" Content="{Binding}"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.HeaderTemplate>
+                </toolkit:ListPicker>
+
+                <my:SettingsSlider 
+                    x:Name="mirrorNumberSettingsSlider" 
+                    SliderValue="{Binding MirrorNumber, Mode=TwoWay}" 
+                    BorderBrush="Black" 
+                    Background="White" 
+                    Foreground="Black" />
+
+                <CheckBox 
+                    IsChecked="{Binding UnlimitedRays, Mode=TwoWay}" 
+                    Content="{Binding Path=LocalizedResources.UnlimitedRaysTitle, 
+                    Source={StaticResource LocalizedStrings}}" 
+                    Height="72" 
+                    Name="unlimitedRaysCheckBox" 
+                    Foreground="Black">
+                	<CheckBox.Background>
+                		<SolidColorBrush Color="#FF3199CC"/>
+                	</CheckBox.Background>
+                </CheckBox>
+
+                <toolkit:ToggleSwitch 
+                    IsChecked="{Binding Sound, Mode=TwoWay}" 
+                    Header="{Binding Path=LocalizedResources.SoundTitle, 
+                    Source={StaticResource LocalizedStrings}}" 
+                    Height="112" 
+                    Name="soundToggleSwitch" 
+                    Width="450" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    BorderBrush="Black" 
+                    Foreground="Black" 
+                    Background="White" 
+                    SwitchForeground="#FF3199CC"
+                    Checked="soundToggleSwitch_Checked"
+                    Unchecked="soundToggleSwitch_Unchecked">
+                    <toolkit:ToggleSwitch.HeaderTemplate>
+                        <DataTemplate>
+                            <ContentControl Foreground="Black" Content="{Binding}"/>
+                        </DataTemplate>
+                    </toolkit:ToggleSwitch.HeaderTemplate>
+                </toolkit:ToggleSwitch>
+                
+                <toolkit:ToggleSwitch 
+                    IsChecked="{Binding Vibrate, Mode=TwoWay}" 
+                    Header="{Binding Path=LocalizedResources.VibrateTitle, 
+                    Source={StaticResource LocalizedStrings}}" 
+                    Height="112" 
+                    Name="vibrateToggleSwitch" 
+                    Width="450" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Foreground="Black" 
+                    BorderBrush="Black" 
+                    Background="White" 
+                    SwitchForeground="#FF3199CC"
+                    Checked="vibrateToggleSwitch_Checked"
+                    Unchecked="vibrateToggleSwitch_Unchecked">
+                    <toolkit:ToggleSwitch.HeaderTemplate>
+                        <DataTemplate>
+                            <ContentControl Foreground="Black" Content="{Binding}"/>
+                        </DataTemplate>
+                    </toolkit:ToggleSwitch.HeaderTemplate>
+                </toolkit:ToggleSwitch>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</phone:PhoneApplicationPage>

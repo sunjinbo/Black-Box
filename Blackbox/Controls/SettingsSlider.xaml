@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Blackbox.SettingsSlider"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480" FontWeight="Normal">
+    
+    <Grid x:Name="LayoutRoot" Height="112" Width="450">
+        <TextBlock Height="30" HorizontalAlignment="Left" Name="title" Text="Number of mirrors" VerticalAlignment="Top" Margin="10,0,0,0" FontSize="19" Foreground="Black" />
+        <Slider HorizontalAlignment="Left" Margin="36,33,0,-5" Name="slider" Width="364" Maximum="5" Minimum="3" SmallChange="1" MouseLeftButtonUp="slider_MouseLeftButtonUp" BorderBrush="Black" Background="Black" Foreground="#FF3199CC" />
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="21,45,0,0" Name="minMirrorNumber" Text="3" VerticalAlignment="Top" Width="31" FontWeight="Bold" Foreground="Black" />
+        <TextBlock Height="30" HorizontalAlignment="Right" Margin="0,46,35,0" Name="maxMirrorNumber" Text="5" VerticalAlignment="Top" FontWeight="Bold" Foreground="Black" />
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="202,23,0,0" Name="curMirrorNumber" Text="4" VerticalAlignment="Top" FontWeight="Bold" Foreground="Black" />
+    </Grid>
+</UserControl>
